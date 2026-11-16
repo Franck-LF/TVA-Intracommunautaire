@@ -7,7 +7,6 @@ __pycache__/
 *.so
 
 # folder
-starter_kit/
 
 # Files
 .gitgnore
