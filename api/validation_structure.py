@@ -164,6 +164,7 @@ def valider(brut: str | None) -> tuple[bool, str]:
     n = normaliser(brut)
     if not n:
         return False, "vide"
+    
     if len(n) < 4:
         return False, "trop_court"
     pays, reste = n[:2], n[2:]
