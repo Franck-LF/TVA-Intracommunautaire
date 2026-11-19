@@ -51,7 +51,16 @@ def _chiffres(n: str) -> list[int]:
 def _fr(n: str) -> bool:
     """France : 2 chiffres de clé + 9 chiffres de SIREN.
 
-    clé = (12 + 3 × (SIREN mod 97)) mod 97
+        clé = (12 + 3 × (SIREN mod 97)) mod 97
+
+        Par exemple : FR27552032534 
+        On décompose le numéro en : clé = 27 
+                                    SIREN = 552032534
+        on vérifie :
+            552032534 % 97 = 5
+            (12 + 3 * 5) % 97 = 27
+            On retombe bien sur la clé
+
     """
     if not re.fullmatch(r"\d{11}", n):
         return False
@@ -169,5 +178,6 @@ def valider(brut: str | None) -> tuple[bool, str]:
     pays, reste = n[:2], n[2:]
     controle = CONTROLES.get(pays)
     if controle is None:
+        print(f"Pays: {pays}\tcode :{brut}")
         return False, "pays_non_couvert"
     return (True, "ok") if controle(reste) else (False, "cle_invalide")
