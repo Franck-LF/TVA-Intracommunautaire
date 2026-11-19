@@ -12,6 +12,7 @@ IMAGES/
 # Files
 .gitgnore
 .venv
+*.log
 
 # Distribution / packaging
 .Python
